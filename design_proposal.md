@@ -86,6 +86,33 @@ HashMap& operator=(const HashMap&) //assignment operator
 - The `collisionCount()` function provides useful diagnostic information for benchmarking and evaluation of hash quality.
 - The `clear()` method removes all entries from the HashMap, freeing associated memory and resetting the internal state.  
 
+# Section 2 - Memory Layout
+- Handdrawn diagrams of the memory layout for each data structure are made seperately.
+
+## DynamicArray
+
+### Rule of Three:
+- Destructor : Deletes the dynamically allocated array and sets the pointer to nullptr.
+- Copy Constructor : Allocates new memory and performs a deep copy by copying each element from the source array to the new array.
+- Assignment Operator : Releases existing memory, allocates new memory , copies elements from the source array(Deep Copy), and returns a reference to the current object.
+- Shallow copy was not used because both objects would point to the same memory causing double deletion and shared modification issues.
+
+## LinkedList
+
+### Rule of Three:
+- Destructor : Traverses the list from head to nullptr and deletes each node.
+- Copy Constructor : Creates a new list by traversing the source list and inserting copies of each node's value into the new list.
+- Assignment Operator : Deletes the existing list then performs a deep copy of the source list by inserting copies of each node's value.
+- Shallow copy was not used because both lists would share the same nodes leading to double deletion and shared modification issues.
+
+## Hashmap
+
+### Rule of Three:
+- Destructor : Traverses each bucket and deletes all nodes in the collision chains, then deletes the bucket array.
+- Copy Constructor : Allocates a new bucket array and deep copy each key-value pair from the source Hashmap .
+- Assignment Operator : Deletes the existing HashMap, allocates a new bucket array & deep copy each key-value pair from the source HashMap.
+- Shallow copy was not used because both HashMaps would share the same bucket array and linked lists, leading to double deletion and shared modification issues.
+
 # Section 3 – Complexity Estimates
 
 ## 1. DynamicArray
