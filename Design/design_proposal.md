@@ -62,7 +62,7 @@ LinkedList& operator=(const LinkedList&) //assignment operator
 ---
 
 ## HashMap
-Separate chaining using linked lists is selected as the collision handling strategy because it naturally supports dynamic growth, simplifies deletion
+Separate chaining using linked lists is selected as the collision handling strategy because it supports dynamic growth, simplifies deletion
 Methods - 
 
 ```cpp
@@ -353,45 +353,45 @@ HashMap& operator=(const HashMap&) //assignment operator
 
 ---
 
-**Note:** The average-case complexity of the HashMap assumes a well-distributed hash function and a maintained load factor below the rehash threshold.
+**Note:** The average-case complexity of the HashMap assumes a well distributed hash function and a maintained load factor below the rehash threshold.
 
 # Section 4 – Design Decisions
 
 ### DynamicArray
 
-* Selected **lazy allocation (initial capacity = 0)** to avoid unnecessary heap allocation for unused containers.
-* Capacity doubles whenever the array becomes full, providing **amortized O(1)** append operations.
-* The array shrinks when utilization falls below **25%**, improving memory utilization while avoiding excessive reallocations.
+* Selected (initial capacity = 0) to avoid unnecessary heap allocation for unused containers.
+* Capacity doubles whenever the array becomes full, providing amortized O(1) append operations.
+* The array shrinks when utilization falls below 25%, improving memory utilization while avoiding excessive reallocations.
 * Added `reserve()` to allow preallocation when the expected size is known, reducing repeated resizing operations.
-* Rejected a **fixed increment growth strategy** because it results in frequent reallocations and poorer performance for large datasets.
+* Rejected a fixed increment growth strategy because it results in frequent reallocations and poorer performance for large datasets.
 
 ---
 
 ### LinkedList
 
-* Selected a **singly linked representation** to reduce per-node memory overhead.
-* Maintained both **head and tail pointers**, allowing **O(1)** insertion at both the front and back of the list.
+* Selected a singly linked representation to reduce per-node memory overhead.
+* Maintained both head and tail pointers, allowing **O(1)** insertion at both the front and back of the list.
 * Stored the current node count as a member variable so that `size()` executes in **O(1)**.
-* Modified `search()` to return the **index of the element** instead of a boolean value, providing more useful information.
-* Considered a **doubly linked list**, but rejected it because backward traversal is not required and the additional pointer increases both memory usage and implementation complexity.
+* Modified `search()` to return the index of the element instead of a boolean value, providing more useful information.
+* A doubly linked list was considered but not selected because the additional backward pointer increases memory usage and implementation complexity. A singly linked list with a tail pointer offers a better balance between simplicity, memory efficiency, and the operations expected from this data structure library..
 
 ---
 
 ### HashMap
 
-* Selected **separate chaining using linked lists** for collision handling because it simplifies deletion and integrates naturally with the LinkedList implementation.
-* Configured the HashMap to **rehash when the load factor reaches 0.70**, maintaining efficient average-case lookup performance.
+* Selected separate chaining using linked lists for collision handling because it simplifies deletion and integrates naturally with the LinkedList implementation.
+* Configured the HashMap to rehash when the load factor reaches 0.70, maintaining efficient average-case lookup performance.
 * Added `collisionCount()` to support benchmarking and evaluation of hash distribution during testing.
-* Implemented `get()` using a **reference parameter and boolean return value**, avoiding ambiguous sentinel values for missing keys.
-* Considered **linear probing**, but rejected it due to clustering and more complex deletion.
-* Considered **Red-Black Tree buckets**, but rejected them because the additional balancing logic and implementation complexity were not justified for the expected workload.
+* Implemented `get()` using a reference parameter and boolean return value, avoiding ambiguous sentinel values for missing keys.
+* Considered linear probing, but rejected it due to clustering and more complex deletion.
+* Considered*Red-Black Tree buckets, but rejected them because the additional balancing logic and implementation complexity were not justified for the expected performance.
 
 ---
 
 ### Memory Management
 
-* All three data structures implement the **Rule of Three**.
-* Copy operations perform **deep copies**, ensuring independent ownership of dynamically allocated memory.
+* All three data structures implement the Rule of Three.
+* Copy operations perform deep copies, ensuring independent ownership of dynamically allocated memory.
 * Each object exclusively owns its allocated resources, preventing memory leaks, dangling pointers, double deletion, and unintended aliasing.
 
 ---

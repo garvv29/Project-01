@@ -36,7 +36,7 @@ public:
         //indexcheck
         if(index<0 || index>size_)
         {
-            cout<< "Error - Invalid Index";
+            cout<< "Error - Invalid Index"<<endl;
             return;
         }
         //if capacity_ 0
@@ -61,7 +61,7 @@ public:
     {
         if(index<0 || index>=size_)
         {
-            cout<< "Error - Invalid Index";
+            cout<< "Error - Invalid Index"<<endl;
             return;
         }
         for(int i=index;i<size_-1;i++)
