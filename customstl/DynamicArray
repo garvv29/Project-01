@@ -9,6 +9,7 @@ private:
     int size_;
     int capacity_;
     T *data;
+
     //resize helper
     void resize(int newCapacity)
     {
@@ -101,6 +102,16 @@ public:
         if(index<0 || index>=size_)return false;
         value = data[index];
         return true;
+    }
+
+    //to modify an element at the given index
+    void set(int index,T& value)
+    {
+        if(index<0 || index>=size)
+        {
+            cout<<"Invalid Index";
+        }
+        data[index]=value;
     }
 
     //testing purpose
