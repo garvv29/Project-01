@@ -28,6 +28,22 @@ private:
         capacity_ = newCapacity;
     }
 
+    //copy helper
+    void copyfrom(const DynamicArray& other)
+    {
+        size=other.size_;
+        capacity_=other.capacity_;
+        data=nullptr
+        if(capacity_>0)
+        {
+            data=new T[capacity_];
+            for(int i=0;i<size_;i++)
+            {
+                data[i]==arr.data[i];
+            }
+        }
+    }
+    
 public:
     //constructor
     DynamicArray(int cap=0){
@@ -169,14 +185,7 @@ public:
         size_=arr.size_;
         capacity_=arr.capacity_;
         data=nullptr
-        if(capacity_>0)
-        {
-            data=new T[capacity_];
-            for(int i=0;i<size_;i++)
-            {
-                data[i]==arr.data[i];
-            }
-        }
+        copyfrom(arr);
     }
 
     //assignment operator
@@ -188,17 +197,7 @@ public:
         }
 
         delete[] data;
-        size_=arr.size_;
-        capacity_=arr.capacity_;
-        data=nullptr;
-        if(capacity_>0)
-        {
-            data=new T[capacity_];
-            for(int i=0;i<size_;i++)
-            {
-                data[i]==arr.data[i];
-            }
-        }
+        copyfrom(arr);
         return this*;
     }
 
