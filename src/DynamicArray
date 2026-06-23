@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <new>
+#include <stdexcept>
 
 template <typename T>
 class DynamicArray {
@@ -13,7 +14,7 @@ private:
 //helper methods - 
 
     //method to manually call destructors for each element in the array
-    void destroyElements(){
+    void destroy(){
         for(int i=0;i<size_;i++)
         {
             (data+i)->~T();
@@ -22,16 +23,27 @@ private:
 
     //internal method to resize the array whenever needed
     void resize(int newcap){
-        if(newcap<=capacity_)return;
+        if(newcap<size_)return;
         //grabs raw memory in void* and then cast it into T* pointer
-        T* newData = static_cast<T*>(malloc(sizeof(T)*newcap));
-        for(int i=0;i<size_;i++)
-        {
-            //creates new objects using placement new in the memory
-            new(newData + i) T(data[i]);
+        T* newData = allocate(newcap);
+        int i=0;
+        try{
+            for(;i<size_;i++)
+            {
+                //creates new objects using placement new in the memory
+                construct(newData+i,data[i]);
+            }
+        }
+        catch(...){
+            for(int j=0;j<i;j++)
+            {
+                 (newData + j)->~T();   
+            }
+            free(newData);
+            throw;
         }
         //destroy old objs
-        destroyElements();
+        destroy();
         free(data);
         data=newData;
         capacity_=newcap;
@@ -46,10 +58,24 @@ private:
             data=nullptr;
             return;
         }
-        data=static_cast<T*>(malloc(sizeof(T)*capacity_));
-        for(int i=0;i<size_;i++)
-        {
-            new(data+i) T(other.data[i]);
+        data=allocate(capacity_);
+        int i=0;
+        try{
+            for(;i<size_;i++)
+            {
+                construct(data+i,other.data[i]);
+            }
+        }
+        catch(...){
+            for(int j=0;j<i;j++)
+            {
+                (data+j)->~T();
+            }
+            free(data);
+            data=nullptr;
+            size_=0;
+            capacity_=0;
+            throw;
         }
     }
 
@@ -58,6 +84,23 @@ private:
         size_=0;
         capacity_=0;
         data=nullptr;
+    }
+
+    //function to call malloc and handle bad alloc exceptions as malloc does not throw an error but return a nullptr
+    T* allocate(int cap){
+        if(cap==0)return nullptr;
+        void *rawMemory = malloc(sizeof(T)*cap);
+        if(rawMemory==nullptr)throw std::bad_alloc();
+        return static_cast<T*> (rawMemory);
+    }
+
+    //to construct an obj at the given ptr with the provided value
+    void construct(T* ptr,const T& value){
+        new(ptr) T(value);
+    }
+
+    void destroyobj(T* ptr){
+        ptr->~T();
     }
 
 public:
@@ -75,7 +118,7 @@ public:
         else capacity_=0;
         if(capacity_>0)
         {
-            data = static_cast<T*>(malloc(sizeof(T)*capacity_));
+            data = allocate(capacity_);
         }
         else
         {
@@ -89,12 +132,29 @@ public:
         deepcopy(other);
     }
     
+    //helper function for =operator 
+    void swap(DynamicArray& other) {
+        int ts = size_;
+        size_ = other.size_;
+        other.size_ = ts;
+
+        // Swap capacities
+        int tc = capacity_;
+        capacity_ = other.capacity_;
+        other.capacity_ = tc;
+
+        // Swap data pointers
+        T* temp = data;
+        data = other.data;
+        other.data = temp;
+    }
+
     //assignment operator to use = operator to deepcopy that object
     DynamicArray& operator=(const DynamicArray&other){
         if(this == &other)return *this;
-        destroyElements();
-        free(data);
-        deepcopy(other);
+        DynamicArray temp(other);
+        //runs destructors for our old dynamic array when temp goes out of scope
+        this->swap(temp);
         return *this;
     }
 
@@ -122,12 +182,12 @@ public:
     //to add an element at the last index
     void append(const T& value){
         if(size_==capacity_)resize(capacity_==0?1:capacity_*2);
-        new(data+size_) T(value);
+        construct(data+size_,value);
         size_++;
     }
 
     void clear(){
-        destroyElements();
+        destroy();
         size_=0;
     }
 
@@ -144,9 +204,9 @@ public:
     }
 
     //to modify elements at the given index (parameter const to let Rvalue be passed to it too)
-    void set(int index,const T& value)const{
+    void set(int index,const T& value){
         if(index<0 || index>=size_ ){
-            std::cout<<"Invalid Index";
+            throw std::out_of_range("DynamicArray: Invalid Index");
             return;
         }
         data[index]=value;
@@ -156,12 +216,17 @@ public:
     void insert(int index,const T& value){
         if(index<0 || index>size_ )
         {
-            std::cout<<"Invalid Index";
+            throw std::out_of_range("DynamicArray: Invalid Index");
             return;
         }
         if(size_==capacity_)resize(capacity_==0?1:capacity_*2);
-        if(index==size_)append(value);
-        new (data + size_) T(data[size_-1]);
+        if(index==size_)
+        {
+            append(value);
+            return;
+        }
+        //make copy of the last element at size index
+        construct(data+size_,data[size_-1]);
         for(int i=size_-1;i>index;i--)
         {
             data[i]=data[i-1];
@@ -170,9 +235,48 @@ public:
         size_++;
     }
 
-    void remove(int index)
-    {
-        
+    //to remove element from the given index
+    void remove(int index){
+        if(index<0 || index>=size_ )
+        {
+            throw std::out_of_range("DynamicArray: Invalid Index");
+            return;
+        }
+        for(int i=index;i<size_-1;i++)
+        {
+            data[i]=data[i+1];
+        }
+        (data+size_-1)->~T();
+        size_--;
+        if(capacity_>4 && size_<capacity_/4)
+        {
+            resize(capacity_/2);
+        }
+    }
+
+    //to check if the array is empty
+    bool isEmpty()const{
+        return size_==0;
+    }
+
+    //preallocate memory if needed without increasing size
+    void reserve(int newcap){
+        if(newcap<=capacity_)return;
+        resize(newcap);
+    }
+
+    //to deallocate memory not in use to the size of the array
+    void shrinktosize(){
+        if(size_==capacity_)return;
+        if(size_ == 0)
+        {
+            destroy();
+            free(data);
+            data = nullptr;
+            capacity_ = 0;
+            return;
+        }
+        resize(size_);
     }
 
     //access elements using [] , & is used to return a reference so using arr[10]=100 would be changeable
@@ -184,9 +288,24 @@ public:
     const T& operator[](int index)const {
         return data[index];
     }
-    
 
+    //to return the starting address 
+    T* begin(){
+        return data;
+    }
+    //const begin - 
+    const T* begin()const{
+        return data;
+    }
 
+    //to return address of the location next of end
+    T* end(){
+        return data+size_;
+    }
+    //const end
+    const T* end()const{
+        return data+size_;
+    }
 
 //testing purpose - 
     //returns number if elements that can fit into the array
@@ -204,7 +323,7 @@ public:
 
     //destructor
     ~DynamicArray(){
-        destroyElements();
+        destroy();
         free(data);
         data=nullptr;
         size_=0;

@@ -1,5 +1,5 @@
 ## Day N Journal  
-### 18-June-2024
+### 23-June-2024
 
 Section 1 — Specific Bug: 
 Section 2 — Failed Attempt: 

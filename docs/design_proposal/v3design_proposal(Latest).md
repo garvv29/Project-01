@@ -17,9 +17,11 @@ class DynamicArray {
         int capacity_;
         T *data;
         void resize(int newCapacity); //internal method to resize the array
-        void destroyelement(); //internal method to destroy elements
+        void destroy(); //internal method to destroy elements
         void deepcopy(const DynamicArray& other); //internal method to copy elements from another DynamicArray
         void init(); //internal method to initialize the array to reduce redudancy in constructors
+        void construct(T* ptr,const T& value); //internal method to construct elements in the array
+        T* allocate(int newCapacity); //internal method to allocate memory for the array
     public:
         DynamicArray() //construct empty array
         DynamicArray(int cap) //construct with initial capacity
