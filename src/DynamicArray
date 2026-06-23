@@ -177,6 +177,7 @@ public:
             append(*it);
         }
     }
+    
 //methods - 
 
     //to add an element at the last index

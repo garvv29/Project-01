@@ -22,6 +22,7 @@ class DynamicArray {
         void init(); //internal method to initialize the array to reduce redudancy in constructors
         void construct(T* ptr,const T& value); //internal method to construct elements in the array
         T* allocate(int newCapacity); //internal method to allocate memory for the array
+        void destoryobj(T* ptr); //internal method to destroy a single element
     public:
         DynamicArray() //construct empty array
         DynamicArray(int cap) //construct with initial capacity
