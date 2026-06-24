@@ -114,9 +114,9 @@ class SinglyList {
         SinglyList(Iterator start, Iterator end){
             init();
             try{
-            for(auto it:start;it!=end;i++)
+            for(auto it=start;it!=end;it++)
             {
-                insert(count,*it);
+                append(*it);
             }
             }
             catch(...)
@@ -162,9 +162,23 @@ class SinglyList {
             count++;
         }
 
+        //to insert at end
+        void append(const T& value){
+            Node* newnode = allocate(value);
+            if(head == nullptr)
+            {
+                head = tail = newnode;
+            }
+            else{
+            tail->next=newnode;
+            tail=newnode;
+            }
+            count++;
+        }
+
         //remove at given index
         void remove(int index){
-            if(index<0 || index>count)throw std::out_of_range("SinglyList:INVALID INDEX");
+            if(index<0 || index>=count)throw std::out_of_range("SinglyList:INVALID INDEX");
             //singlenode
             if(count==1)
             {
@@ -189,7 +203,7 @@ class SinglyList {
             }
             Node* delnode = temp->next;
             temp->next = delnode->next;
-            //remove end
+            //move tail
             if(delnode == tail)tail=temp;
             destruct(delnode);
             count--;

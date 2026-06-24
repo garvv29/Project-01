@@ -182,7 +182,7 @@ public:
 
     //to add an element at the last index
     void append(const T& value){
-        if(size_==capacity_)resize(capacity_==0?1:capacity_*2);
+        if(size_==capacity_)resize(capacity_==0?1:capacity_*2);//resize by 2 if s==c and if c==0 then c==1
         construct(data+size_,value);
         size_++;
     }
@@ -199,7 +199,7 @@ public:
 
     //safe retrieval to elements at the given index
     bool get(int index,T& value)const{
-        if(index<0 || index>=size_ )return false;
+        if(index<0 || index>=size_ )return false;//it does not throw error because get should not cause program to throw exceptions
         value = data[index];
         return true;
     }
@@ -247,7 +247,7 @@ public:
         {
             data[i]=data[i+1];
         }
-        (data+size_-1)->~T();
+        destroyobj(data+size);
         size_--;
         if(capacity_>4 && size_<capacity_/4)
         {
@@ -280,12 +280,12 @@ public:
         resize(size_);
     }
 
-    //access elements using [] , & is used to return a reference so using arr[10]=100 would be changeable
+    //access elements using [] & is used to return a reference so using arr[10]=100 would be changeable
     T& operator[](int index){
         return data[index];
     }
 
-    //read only []
+    //read only [] when const DA is used so it woudl return value in that case
     const T& operator[](int index)const {
         return data[index];
     }
