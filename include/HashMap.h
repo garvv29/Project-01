@@ -55,7 +55,7 @@ class HashMap{
     HashMap(int inibucketcount=16,double loadfactor=0.75);
     //copy constructor
     HashMap(const HashMap& map);
-    //assignment operator
+    //assignment operator (swap idiom)
     HashMap& operator=(const HashMap& map);
     
     //methods- 

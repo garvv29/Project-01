@@ -10,8 +10,8 @@
     {   
         size_t operator()(const T& val)const{
             std::uintptr_t addr = reinterpret_cast<std::uintptr_t>(&val);
-            addr^=(addr>>16); 
-            addr*=0x45d9f3b; 
+            addr^=(addr>>16);
+            addr*=0x45d9f3b;
             addr^=(addr>>16);
             return static_cast<size_t> (addr);
         }
@@ -109,7 +109,6 @@
             //to append a key value pair in hashmap
             void insert(const Key& k,const Value& v){
                 size_t index = BucketIndex(k);
-                //I
                 SinglyList<Entry>& bucket = buckets[index];
                 for(int i=0;i<bucket.size();i++){
                     if(bucket[i].key==k)

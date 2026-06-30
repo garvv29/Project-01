@@ -227,9 +227,9 @@
     void HashMap<Key,Value,Hash>::print() const{
         for(int i=0;i<bucketcount;i++)
         {
-            SinglyList<Entry>& bucket = buckets[i];
+            const SinglyList<Entry>& bucket = buckets[i];
             for(int j=0;j<bucket.size();j++){
-                std::cout<<bucket[i].key<<" "<<bucket[i].value<<endl;
+                std::cout<<bucket[j].key<<" "<<bucket[j].value<<endl;
             }
         }
     }

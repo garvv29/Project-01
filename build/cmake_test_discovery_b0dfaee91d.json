@@ -1,0 +1,72 @@
+{
+  "tests": 12,
+  "name": "AllTests",
+  "testsuites": [
+    {
+      "name": "RedisTest",
+      "tests": 12,
+      "testsuite": [
+        {
+          "name": "SetAndGet",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 47
+        },
+        {
+          "name": "UpdateExistingKey",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 59
+        },
+        {
+          "name": "GetMissingKey",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 71
+        },
+        {
+          "name": "DeleteKey",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 85
+        },
+        {
+          "name": "DeleteMissingKey",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 98
+        },
+        {
+          "name": "Exists",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 112
+        },
+        {
+          "name": "Count",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 129
+        },
+        {
+          "name": "Clear",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 145
+        },
+        {
+          "name": "InvalidSet",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 163
+        },
+        {
+          "name": "InvalidGet",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 173
+        },
+        {
+          "name": "UnknownCommand",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 183
+        },
+        {
+          "name": "ValueWithSpaces",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 197
+        }
+      ]
+    }
+  ]
+}

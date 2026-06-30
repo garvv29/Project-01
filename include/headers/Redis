@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <HashMap>
 #include <string>
@@ -12,17 +13,13 @@ class Redis{
         printcommands();
         while(true)
         {
-            std::cout<<"->";
+        std::cout<<"->";
             if(!std::getline(std::cin,line))
             break;
-
             if(line.empty())continue;
-
             std::stringstream ss(line);
-
             std::string command;
             ss>>command;
-
             if(command=="SET")
             {
                 handleSet(ss);
