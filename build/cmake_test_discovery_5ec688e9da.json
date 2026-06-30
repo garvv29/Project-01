@@ -1,0 +1,338 @@
+{
+  "tests": 58,
+  "name": "AllTests",
+  "testsuites": [
+    {
+      "name": "RedisTest",
+      "tests": 12,
+      "testsuite": [
+        {
+          "name": "SetAndGet",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 50
+        },
+        {
+          "name": "UpdateExistingKey",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 62
+        },
+        {
+          "name": "GetMissingKey",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 74
+        },
+        {
+          "name": "DeleteKey",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 88
+        },
+        {
+          "name": "DeleteMissingKey",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 101
+        },
+        {
+          "name": "Exists",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 115
+        },
+        {
+          "name": "Count",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 132
+        },
+        {
+          "name": "Clear",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 148
+        },
+        {
+          "name": "InvalidSet",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 166
+        },
+        {
+          "name": "InvalidGet",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 176
+        },
+        {
+          "name": "UnknownCommand",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 186
+        },
+        {
+          "name": "ValueWithSpaces",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/redis_test.cpp",
+          "line": 200
+        }
+      ]
+    },
+    {
+      "name": "SinglyListInsertTest",
+      "tests": 3,
+      "testsuite": [
+        {
+          "name": "InsertAtBeginning",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 15
+        },
+        {
+          "name": "InsertAtMiddle",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 28
+        },
+        {
+          "name": "InsertAtEnd",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 41
+        }
+      ]
+    },
+    {
+      "name": "SinglyListInsertStandalone",
+      "tests": 4,
+      "testsuite": [
+        {
+          "name": "InsertIntoEmptyList",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 49
+        },
+        {
+          "name": "InsertNegativeIndexThrows",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 59
+        },
+        {
+          "name": "InsertPastEndThrows",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 66
+        },
+        {
+          "name": "InsertLargeDataset",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 74
+        }
+      ]
+    },
+    {
+      "name": "SinglyListComprehensive",
+      "tests": 19,
+      "testsuite": [
+        {
+          "name": "DefaultConstructor",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 99
+        },
+        {
+          "name": "IteratorConstructor",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 107
+        },
+        {
+          "name": "CopyConstructorDeepCopy",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 122
+        },
+        {
+          "name": "AssignmentOperator",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 141
+        },
+        {
+          "name": "SelfAssignment",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 162
+        },
+        {
+          "name": "OperatorBrackets",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 176
+        },
+        {
+          "name": "GetMethod",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 188
+        },
+        {
+          "name": "AppendElements",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 204
+        },
+        {
+          "name": "InsertFront",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 216
+        },
+        {
+          "name": "RemoveFront",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 233
+        },
+        {
+          "name": "RemoveMiddle",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 248
+        },
+        {
+          "name": "RemoveLastElement",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 263
+        },
+        {
+          "name": "RemoveOnlyElement",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 276
+        },
+        {
+          "name": "RemoveInvalidIndexThrows",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 288
+        },
+        {
+          "name": "RemoveFrontFromEmptyThrows",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 299
+        },
+        {
+          "name": "SearchExistingElement",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 308
+        },
+        {
+          "name": "SearchMissingElement",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 321
+        },
+        {
+          "name": "ClearList",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 333
+        },
+        {
+          "name": "BracketsOutOfRangeThrows",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/singly_list_test.cpp",
+          "line": 349
+        }
+      ]
+    },
+    {
+      "name": "DynamicArrayInsertTest",
+      "tests": 3,
+      "testsuite": [
+        {
+          "name": "InsertAtBeginning",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 16
+        },
+        {
+          "name": "InsertAtMiddle",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 29
+        },
+        {
+          "name": "InsertAtEnd",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 42
+        }
+      ]
+    },
+    {
+      "name": "DynamicArrayInsertStandalone",
+      "tests": 5,
+      "testsuite": [
+        {
+          "name": "InsertIntoEmptyArray",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 50
+        },
+        {
+          "name": "InsertTriggersResize",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 59
+        },
+        {
+          "name": "InsertNegativeIndexThrows",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 79
+        },
+        {
+          "name": "InsertPastEndThrows",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 85
+        },
+        {
+          "name": "InsertLargeDataset",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 93
+        }
+      ]
+    },
+    {
+      "name": "DynamicArrayComprehensive",
+      "tests": 12,
+      "testsuite": [
+        {
+          "name": "DefaultConstructor",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 118
+        },
+        {
+          "name": "CapacityConstructor",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 124
+        },
+        {
+          "name": "FillConstructor",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 130
+        },
+        {
+          "name": "CopyConstructorDeepCopy",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 140
+        },
+        {
+          "name": "AssignmentOperator",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 156
+        },
+        {
+          "name": "SelfAssignment",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 173
+        },
+        {
+          "name": "OperatorBrackets",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 184
+        },
+        {
+          "name": "GetAndSetMethods",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 193
+        },
+        {
+          "name": "RemoveElement",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 207
+        },
+        {
+          "name": "ClearArray",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 220
+        },
+        {
+          "name": "ShrinkToFit",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 235
+        },
+        {
+          "name": "RangeBasedForLoop",
+          "file": "C:\/Users\/garvc\/Desktop\/CQ\/Project-01\/tests\/dynamic_array_test.cpp",
+          "line": 251
+        }
+      ]
+    }
+  ]
+}
