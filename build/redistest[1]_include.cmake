@@ -1,0 +1,5 @@
+if(EXISTS "C:/Users/garvc/Desktop/CQ/Project-01/build/redistest[1]_tests.cmake")
+  include("C:/Users/garvc/Desktop/CQ/Project-01/build/redistest[1]_tests.cmake")
+else()
+  add_test(redistest_NOT_BUILT redistest_NOT_BUILT)
+endif()

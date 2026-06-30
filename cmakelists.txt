@@ -20,11 +20,11 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 set(gtest_disable_pthreads ON CACHE BOOL "" FORCE) 
 FetchContent_MakeAvailable(googletest)
 
-# --- 3. YOUR TEST APP ---
+#3.TEST DS
 add_executable(run_tests
     tests/dynamic_array_test.cpp
     tests/singly_list_test.cpp
-    tests/redis_test.cpp
+    tests/hash_map_test.cpp
 )
 
 target_include_directories(run_tests PRIVATE include)
@@ -33,3 +33,15 @@ target_link_libraries(run_tests gtest_main)
 
 include(GoogleTest)
 gtest_discover_tests(run_tests)
+
+#TEST REDIS
+add_executable(redistest
+    tests/redis_test.cpp
+)
+
+target_include_directories(redistest PRIVATE include)
+
+target_link_libraries(redistest gtest_main)
+
+include(GoogleTest)
+gtest_discover_tests(redistest)
