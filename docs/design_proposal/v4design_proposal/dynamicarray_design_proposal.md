@@ -5,7 +5,6 @@ For the Design choices i evaluated multiple pros and cons for each data structur
 
 # Dynamic Array -
 * The DynamicArray manages a contiguous block of heap memory manually. Memory is allocated when capacity changes and released when the DynamicArray is destroyed. Existing elements are copied into the new allocation during resizing. 
-* It gives amortized O(1) time complexity for appending elements due to the doubling so this happens because array only doubles at powers of 2 which means that the number of operations needed would be n operations to insert n elements and (n-1) operations to copy elements during resizing  giving a total of 2n-1 operations which is for n element so for a single element it is 2n-1/n which is 2 and this can be called O(1) amortized time complexity.
 ## Public API - 
 ```cpp
 template<typename T> //generic type parameter for any type of element
@@ -23,13 +22,16 @@ class DynamicArray {
         T* allocate(int newCapacity); //internal method to allocate memory for the array
         void destoryobj(T* ptr); //internal method to destroy a single element
     public:
+    //CONSTRUCTORS
         DynamicArray() //construct empty array
         DynamicArray(int cap) //construct with initial capacity
-        DynamicArray(int count,const T& value)//to construct a Dynamic array of the given size with the all of them initialized to the same given value
+        DynamicArray(int count,const T& value)//to construct a Dynamic array of the given size with the all of them initialized 
         template<typename Iterator>
         DynamicArray(Iterator start,Iterator end); //construct from any iterable container
         template<typename Ds> //construct from any Data structure that supports iteration
         DynamicArray(const Ds& ds)
+        DynamicArray(const DynamicArray&) //copy constructor
+    //METHODS
         void append(const T& value) //append element
         void insert(int index,const T& value) //insert at position
         void remove(int index) //remove element
@@ -43,14 +45,13 @@ class DynamicArray {
         bool isEmpty() const //check whether empty
         T* begin() //return pointer to first element
         T* end() //return pointer to one past last element
-        
-        
-        DynamicArray(const DynamicArray&) //copy constructor
+    //DESTRUCTOR AND ASSIGNMENT OPERATOR
         void swap(DynamicArray& other) //swap contents with another DynamicArray helper function for assignment operator
         DynamicArray& operator=(const DynamicArray&) //assignment operator
         ~DynamicArray() //destructor
 };
 ```
+* It gives amortized O(1) time complexity for appending elements due to the doubling so this happens because array only doubles at powers of 2 which means that the number of operations needed would be n operations to insert n elements and (n-1) operations to copy elements during resizing  giving a total of 2n-1 operations which is for n element so for a single element it is 2n-1/n which is 2 and this can be called O(1) amortized time complexity.
 * The DynamicArray class is a template class that can hold any type of element specified by the user.
 * Internally the data is stored in a contiguous block of memory by using malloc and free for memory management.
 * Internal methods like resize() and copyfrom() are used to manage memory and copy data when needed.
